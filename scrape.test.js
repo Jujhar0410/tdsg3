@@ -1,5 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
+
 const urls = [
   'https://sanand0.github.io/tdsdata/js_table/?seed=63',
   'https://sanand0.github.io/tdsdata/js_table/?seed=64',

@@ -1,0 +1,25 @@
+name: Scrape Table Sums (22f2001041@ds.study.iitm.ac.in)
+
+on: [push, pull_request]
+
+jobs:
+  scrape:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install 22f2001041@ds.study.iitm.ac.in dependencies
+        uses: microsoft/playwright-github-action@v1
+        with:
+          playwright-version: '1.48.0'  # Latest stable as of 2026
+      
+      - name: Run Playwright scrape test
+        run: npx playwright test scrape.test.js
+      
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
